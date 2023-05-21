@@ -24,24 +24,26 @@ const Input = (props: InputProps) => {
         value={inputValue}
         id={id}
         type={inputType}
-        className="block
+        className="
+         block
          rounded-md 
          px-6
           pt-6 
           pb-1 
           w-full 
           text-base
-           text-white 
-           bg-indigo-700 
-           appearance-none 
-           focus:outline-none  
-           focus:ring-0 
-           peer"
+          text-white 
+          bg-indigo-700 
+          appearance-none 
+          focus:outline-none  
+          focus:ring-0 
+          peer"
         placeholder=" "
       />
       <label
         className="
         absolute 
+        text-base
         text-zinc-300
         duration-150 
         transform
