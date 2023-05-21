@@ -1,8 +1,29 @@
-export default function Input() {
+import { FC } from "react";
+
+interface InputProps {
+  id: string;
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  inputValue: string;
+  label: string;
+  inputType?: string;
+}
+
+const Input = (props: InputProps) => {
+  const {
+    id,
+    handleInputChange,
+    inputValue,
+    label,
+    inputType = "text",
+  } = props;
+
   return (
     <div className="relative">
       <input
-        id="email"
+        onChange={handleInputChange}
+        value={inputValue}
+        id={id}
+        type={inputType}
         className="block
          rounded-md 
          px-6
@@ -35,10 +56,12 @@ export default function Input() {
         peer-focus:scale-75
         peer-focus:-translate-y-3 
         "
-        htmlFor="email"
+        htmlFor={id}
       >
-        Email
+        {label}
       </label>
     </div>
   );
-}
+};
+
+export default Input;

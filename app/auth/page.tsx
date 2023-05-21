@@ -1,6 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Input from "../components/Input";
+import { useState } from "react";
+
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <main className="relative h-full w-full bg-[url('/images/hero.webp')] bg-center bg-fixed bg-cover text-2xl text-yellow-400">
       <section className="bg-blue-500 w-full h-full lg:bg-opacity-30">
@@ -19,7 +27,26 @@ export default function Home() {
             <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
             <div className="flex flex-col gap-4">
               {" "}
-              <Input />
+              <Input
+                label="Username"
+                id="name"
+                handleInputChange={(el) => setName(el.target.value)}
+                inputValue={name}
+              />
+              <Input
+                label="Email"
+                inputType="email"
+                id="email"
+                handleInputChange={(el) => setEmail(el.target.value)}
+                inputValue={email}
+              />
+              <Input
+                label="password"
+                inputType="password"
+                id="password"
+                handleInputChange={(el) => setPassword(el.target.value)}
+                inputValue={password}
+              />
             </div>
           </div>
         </div>
