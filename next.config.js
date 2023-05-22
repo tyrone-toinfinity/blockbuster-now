@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+require("dotenv").config();
 
-module.exports = nextConfig
+const nextConfig = {
+  reactStrictMode: true,
+  env: {
+    DATABASE_URL: process.env.DATABASE_URL,
+  },
+};
+
+module.exports = nextConfig;
