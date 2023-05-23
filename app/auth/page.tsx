@@ -31,7 +31,8 @@ export default function Home() {
         password,
       });
     } catch (err) {
-      console.log("error ❤️‍🔥", err);
+      // todo write an error message
+      console.log(err);
     }
   }, [email, name, password]);
 
