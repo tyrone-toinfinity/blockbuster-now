@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Input from "../components/Input";
+import axios from "axios";
 import { useCallback, useState } from "react";
 
 export default function Home() {
@@ -21,6 +22,18 @@ export default function Home() {
   const handleLearnMoreClick = () => {
     setshowHide(true);
   };
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+    } catch (err) {
+      console.log("error ❤️‍🔥", err);
+    }
+  }, [email, name, password]);
 
   return (
     <main className="relative h-full w-full bg-[url('/images/hero.webp')] bg-center bg-fixed bg-cover text-2xl text-yellow-400">
@@ -57,7 +70,7 @@ export default function Home() {
                 inputValue={email}
               />
               <Input
-                label="password"
+                label="Password"
                 inputType="password"
                 id="password"
                 handleInputChange={(el) => setPassword(el.target.value)}
@@ -65,16 +78,8 @@ export default function Home() {
               />
             </div>
             <button
-              className="
-          bg-yellow-600
-            py-4
-            text-white
-            rounded-md 
-            w-full
-            mt-6
-          hover:bg-yellow-500
-          text-base
-            "
+              onClick={register}
+              className="bg-yellow-600 py-4 text-white rounded-md  w-full mt-6 hover:bg-yellow-500 text-base"
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
