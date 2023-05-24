@@ -12,10 +12,14 @@ import { compare } from "bcrypt";
 // }
 
 const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
+
       credentials: {
         email: {
           label: "Email",
@@ -52,13 +56,14 @@ const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth",
+    error: "/hello",
   },
   debug: process.env.NODE_ENV === "development",
-  session: {
-    strategy: "jwt",
-  },
-  jwt: { secret: process.env.NEXTAUTH_JWT_SECRET },
-  secret: process.env.NEXTAUTH_SECRET,
+  // todo make private
+  jwt: { secret: "NEXT-JWT-SECRET" },
+  secret: "NEXT-SECRET,",
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
+export { handler as POST, handler as GET };

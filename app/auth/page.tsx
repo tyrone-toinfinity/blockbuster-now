@@ -30,6 +30,7 @@ export default function Home() {
         email,
         password,
         redirect: false,
+        callbackUrl: "/",
       });
     } catch (err) {
       console.log(err);
