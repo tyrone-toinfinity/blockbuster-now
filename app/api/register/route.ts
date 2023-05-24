@@ -1,11 +1,12 @@
 import bcrypt from "bcrypt";
 import prismadb from "@/libs/prismadb";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   return new Response("hello from the sever!!!");
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     // if()
     const body = await req.json();
@@ -17,7 +18,7 @@ export async function POST(req: Request, res: Response) {
 
     // Check if user exist
     if (existingUser) {
-      return new Response(JSON.stringify({ message: "Email Taken" }), {
+      return new NextResponse(JSON.stringify({ error: "Email" }), {
         status: 422,
       });
     }
@@ -33,9 +34,9 @@ export async function POST(req: Request, res: Response) {
         emailVerified: new Date(),
       },
     });
-    return new Response(JSON.stringify({ user }), { status: 200 });
+    return new NextResponse(JSON.stringify({ user }), { status: 200 });
   } catch (error) {
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ error: `Something went wrong: ${error}` }),
       { status: 400 }
     );

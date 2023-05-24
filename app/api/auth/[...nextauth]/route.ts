@@ -1,20 +1,28 @@
-import NextAuth from "next-auth/next";
-import Credentials from "next-auth/providers/credentials";
+import NextAuth, { AuthOptions, NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from "next-auth/providers/apple";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prismadb from "@/libs/prismadb";
 import { compare } from "bcrypt";
 
-export default NextAuth({
+// export async function GET(req: Request) {
+//   return new Response("hello from the server ⚡️");
+// }
+
+const authOptions: NextAuthOptions = {
   providers: [
-    Credentials({
+    CredentialsProvider({
       id: "credentials",
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         email: {
           label: "Email",
           type: "text",
         },
         password: {
-          label: "password",
+          label: "Password",
           type: "password",
         },
       },
@@ -27,6 +35,7 @@ export default NextAuth({
             email: credentials.email,
           },
         });
+
         if (!user || !user.hashedPassword) {
           throw new Error("Email does not exist");
         }
@@ -50,4 +59,6 @@ export default NextAuth({
   },
   jwt: { secret: process.env.NEXTAUTH_JWT_SECRET },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+export default NextAuth(authOptions);

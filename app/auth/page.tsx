@@ -4,6 +4,7 @@ import Image from "next/image";
 import Input from "../components/Input";
 import axios from "axios";
 import { useCallback, useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,20 @@ export default function Home() {
   const handleLearnMoreClick = () => {
     setshowHide(true);
   };
+  // user login
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, [email, password]);
 
+  // register new user
   const register = useCallback(async () => {
     try {
       await axios.post("/api/register", {
@@ -46,8 +60,10 @@ export default function Home() {
             alt="log"
             height={160}
             width={160}
+            priority={true}
           />
         </div>
+        {/* Login Form */}
         <div className="flex justify-center">
           {" "}
           <div className="bg-blue-900 bg-opacity-90 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md w-full">
@@ -79,7 +95,7 @@ export default function Home() {
               />
             </div>
             <button
-              onClick={register}
+              onClick={variant === "login" ? login : register}
               className="bg-yellow-600 py-4 text-white rounded-md  w-full mt-6 hover:bg-yellow-500 text-base"
             >
               {variant === "login" ? "Login" : "Sign up"}
