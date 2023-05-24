@@ -19,7 +19,6 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
-
       credentials: {
         email: {
           label: "Email",
@@ -56,12 +55,12 @@ const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth",
-    error: "/hello",
   },
   debug: process.env.NODE_ENV === "development",
-  // todo make private
-  jwt: { secret: "NEXT-JWT-SECRET" },
-  secret: "NEXT-SECRET,",
+  jwt: {
+    secret: process.env.NEXTAUTH_JWT_SECRET,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
