@@ -1,21 +1,23 @@
 import NextAuth, { AuthOptions, NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import AppleProvider from "next-auth/providers/apple";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prismadb from "@/libs/prismadb";
 import { compare } from "bcrypt";
 
-// export async function GET(req: Request) {
-//   return new Response("hello from the server ⚡️");
-// }
-
 const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+  adapter: PrismaAdapter(prismadb),
   providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    }),
+
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
@@ -54,9 +56,13 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/auth",
+    signIn: "/",
   },
   debug: process.env.NODE_ENV === "development",
+
+  session: {
+    strategy: "jwt",
+  },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },

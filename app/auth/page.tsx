@@ -5,8 +5,14 @@ import Input from "../components/Input";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+import { FcGoogle } from "react-icons/fc";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { profile } from "console";
 
 export default function Home() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -32,10 +38,12 @@ export default function Home() {
         redirect: false,
         callbackUrl: "/",
       });
+
+      router.push("/");
     } catch (err) {
       console.log(err);
     }
-  }, [email, password]);
+  }, [email, password, router]);
 
   // register new user
   const register = useCallback(async () => {
@@ -45,14 +53,14 @@ export default function Home() {
         name,
         password,
       });
+      login();
     } catch (err) {
-      // todo write an error message
       console.log(err);
     }
-  }, [email, name, password]);
+  }, [email, name, password, login]);
 
   return (
-    <main className="relative h-full w-full bg-[url('/images/hero.webp')] bg-center bg-fixed bg-cover text-2xl text-yellow-400">
+    <main className="relative h-full w-full bg-[url('/images/hero.webp')] bg-center bg-fixed bg-cover text-2xl ">
       <section className="bg-blue-900 w-full h-full lg:bg-opacity-30 ">
         <div className="lg:px-20 py-2 px-10">
           {" "}
@@ -101,6 +109,26 @@ export default function Home() {
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
+
+            <div className="flex flex-row items-center  mt-6 justify-evenly ">
+              <button
+                onClick={() => signIn("google")}
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+              >
+                <FcGoogle size={32} />
+              </button>
+              <button
+                onClick={() =>
+                  signIn("github", {
+                    callbackUrl: "/api/hello",
+                    redirect: true,
+                  })
+                }
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+              >
+                <BsGithub size={32} />
+              </button>
+            </div>
 
             {/* New User */}
             <div className="text-neutral-400 mt-12 text-base">
