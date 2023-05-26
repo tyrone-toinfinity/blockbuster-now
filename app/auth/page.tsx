@@ -4,7 +4,7 @@ import Image from "next/image";
 import Input from "../components/Input";
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { FcGoogle } from "react-icons/fc";
