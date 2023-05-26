@@ -1,3 +1,3 @@
-export async function GET(request: Request) {
-  return new Response(`Received message: `);
+export async function GET() {
+  return new Response(`Hello From the Server! 😎`);
 }
