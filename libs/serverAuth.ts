@@ -1,28 +1,27 @@
-"use client";
-import { NextResponse, NextRequest } from "next/server";
-import { useSession } from "next-auth/react";
-import prismadb from "./prismadb";
-import { redirect } from "next/navigation";
-import { Provider } from "unlighthouse";
-import { getServerSession } from "next-auth/next";
+import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
 
-const serverAuth = async (req: NextRequest) => {
-  // const session = await getServerSession({ req });
-  // if (status === "authenticated") {
-  //   return "we are in!!!";
-  // }
-  // if (!session?.user?.email) {
-  //   throw new Error("Not signed in");
-  // }
-  // const currentUser = await prismadb.user.findUnique({
-  //   where: {
-  //     email: session.user.email,
-  //   },
-  // });
-  // if (!currentUser) {
-  //   throw new Error("Not sign in");
-  // }
-  // return { session };
-};
+import prismadb from '@/libs/prismadb';
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+
+const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getServerSession(req, res, authOptions);
+
+  if (!session?.user?.email) {
+    throw new Error('Not signed in');
+  }
+
+  const currentUser = await prismadb.user.findUnique({
+    where: {
+      email: session.user.email,
+    }
+  });
+  
+  if (!currentUser) {
+    throw new Error('Not signed in');
+  }
+
+  return { currentUser };
+}
 
 export default serverAuth;

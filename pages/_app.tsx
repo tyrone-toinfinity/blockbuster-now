@@ -1,24 +1,24 @@
-import Provider from "./components/Provider";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import "../styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
+const metadata = {
   title:
     "Blockbuster Now - Watch TV Shows Online, Watch Movies Online by create next app",
   description:
     "Watch Blockbuster Now movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <html lang="en">
-      <head>
+    <>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -37,11 +37,10 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-      </head>
-      <Provider>
-        {" "}
-        <body className={inter.className}>{children}</body>
-      </Provider>
-    </html>
+      </Head>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
   );
 }
