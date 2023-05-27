@@ -22,7 +22,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
 
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
-      <Image
+      <img
         onClick={redirectToWatch}
         src={data.thumbnailUrl}
         alt="Movie"
@@ -39,7 +39,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         delay-300
         w-full
         h-[12vw]
-      "
+        "
+        // width={100}
+        // height={100}
       />
       <div
         className="
@@ -60,7 +62,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         group-hover:opacity-100
       "
       >
-        <Image
+        <img
           onClick={redirectToWatch}
           src={data.thumbnailUrl}
           alt="Movie"
@@ -74,7 +76,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           rounded-t-md
           w-full
           h-[12vw]
+          
         "
+          width={100}
+          height={100}
         />
         <div
           className="
@@ -104,7 +109,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               <ChevronDownIcon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>
           </div>
-          <p className="text-green-400 font-semibold mt-4">
+          <p className="text-yellow-400 font-semibold mt-4">
             New <span className="text-white">2023</span>
           </p>
           <div className="flex flex-row mt-4 gap-2 items-center">
