@@ -125,12 +125,12 @@ const Auth = () => {
             </button>
 
             <div className="flex flex-row items-center  mt-6 justify-evenly ">
-              <button
+              {/* <button
                 onClick={() => signIn("google", { callbackUrl: "/profiles" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
-              </button>
+              </button> */}
               <button
                 onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
