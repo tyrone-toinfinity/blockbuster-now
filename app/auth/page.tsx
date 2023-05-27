@@ -101,6 +101,7 @@ export default function Home() {
                 inputValue={password}
               />
             </div>
+
             <button
               onClick={variant === "login" ? login : register}
               className="bg-yellow-600 py-4 text-white rounded-md  w-full mt-6 hover:bg-yellow-500 text-base"
@@ -110,13 +111,13 @@ export default function Home() {
 
             <div className="flex flex-row items-center  mt-6 justify-evenly ">
               <button
-                onClick={() => signIn("google", { callbackUrl: "/" })}
+                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </button>
               <button
-                onClick={() => signIn("github", { callbackUrl: "/" })}
+                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <BsGithub size={32} />
