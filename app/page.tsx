@@ -2,8 +2,8 @@
 
 import useCurrentUser from "@/hooks/userCurrentUser";
 import { NextPageContext } from "next";
-import { signOut, getSession } from "next-auth/react";
-
+import { signOut, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 // export async function getData(content: NextPageContext) {
 //   const session = await getSession(content);
 
@@ -17,6 +17,7 @@ import { signOut, getSession } from "next-auth/react";
 //   }
 //   return { props: {} };
 // }
+
 export default function Home() {
   const { data: user } = useCurrentUser();
   return (

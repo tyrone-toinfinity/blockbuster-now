@@ -6,10 +6,8 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { profile } from "console";
 
 export default function Home() {
   const router = useRouter();
@@ -41,7 +39,7 @@ export default function Home() {
 
       router.push("/");
     } catch (err) {
-      console.log(err);
+      return err;
     }
   }, [email, password, router]);
 
@@ -55,7 +53,7 @@ export default function Home() {
       });
       login();
     } catch (err) {
-      console.log(err);
+      return err;
     }
   }, [email, name, password, login]);
 
@@ -112,18 +110,13 @@ export default function Home() {
 
             <div className="flex flex-row items-center  mt-6 justify-evenly ">
               <button
-                onClick={() => signIn("google")}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </button>
               <button
-                onClick={() =>
-                  signIn("github", {
-                    callbackUrl: "/api/hello",
-                    redirect: true,
-                  })
-                }
+                onClick={() => signIn("github", { callbackUrl: "/" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <BsGithub size={32} />
