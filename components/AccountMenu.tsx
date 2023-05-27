@@ -20,8 +20,10 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
         <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
           <Image
             className="w-8 rounded-md"
-            src="/images/default-blue.png"
+            src="/images/profile-10.png"
             alt=""
+            width={50}
+            height={50}
           />
           <p className="text-white text-sm group-hover/item:underline">
             {currentUser?.name}

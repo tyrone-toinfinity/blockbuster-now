@@ -6,10 +6,28 @@ import Image from "next/image";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
 const images = [
-  "/images/default-blue.png",
-  "/images/default-red.png",
-  "/images/default-slate.png",
-  "/images/default-green.png",
+  "/images/profile-1.png",
+  "/images/profile-2.png",
+  "/images/profile-3.png",
+  "/images/profile-4.png",
+  "/images/profile-5.png",
+  "/images/profile-6.png",
+  "/images/profile-7.png",
+  "/images/profile-8.png",
+  "/images/profile-9.png",
+  "/images/profile-10.png",
+  "/images/profile-11.png",
+  "/images/profile-12.png",
+  "/images/profile-13.png",
+  "/images/profile-14.png",
+  "/images/profile-15.png",
+  "/images/profile-16.png",
+  "/images/profile-17.png",
+  "/images/profile-18.png",
+  "/images/profile-19.png",
+  "/images/profile-20.png",
+  "/images/profile-21.png",
+  "/images/profile-22.png",
 ];
 
 interface UserCardProps {
@@ -34,19 +52,21 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 const UserCard: React.FC<UserCardProps> = ({ name }) => {
-  const imgSrc = images[Math.floor(Math.random() * 4)];
+  const imgSrc = images[Math.floor(Math.random() * 22)];
 
   return (
     <div className="group flex-row w-44 mx-auto">
-      <div className="w-44 h-44 rounded-md flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden">
+      <div className="w-44 h-44 p-1 flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden rounded-full ">
         <Image
           draggable={false}
           className="w-max h-max object-contain"
           src={imgSrc}
           alt=""
+          width={250}
+          height={250}
         />
       </div>
-      <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white">
+      <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white ">
         {name}
       </div>
     </div>
