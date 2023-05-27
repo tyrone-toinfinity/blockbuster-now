@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 import Input from "@/components/Input";
+import Image from "next/image";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -76,7 +77,13 @@ const Auth = () => {
     <main className="relative h-full w-full bg-[url('/images/hero.webp')] bg-center bg-fixed bg-cover text-2xl ">
       <section className="bg-blue-900 w-full h-full lg:bg-opacity-30 ">
         <div className="px-12 py-5">
-          <img src="Blockbuster_logo.svg" alt="Logo" width={120} height={120} />
+          <Image
+            src="Blockbuster_logo.svg"
+            alt="Logo"
+            width={120}
+            height={120}
+            priority={true}
+          />
         </div>
         {/* Login Form */}
         <div className="flex justify-center">
