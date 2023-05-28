@@ -21,7 +21,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   );
 
   return (
-    <div className="group bg-zinc-900 col-span relative h-[12vw]">
+    <div className="group bg-zinc-900 col-span relative md:h-[12vw] ">
       <img
         onClick={redirectToWatch}
         src={data.thumbnailUrl}
@@ -38,10 +38,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         sm:group-hover:opacity-0
         delay-300
         w-full
-        h-[12vw]
+h-full
         "
-        // width={100}
-        // height={100}
       />
       <div
         className="
@@ -75,7 +73,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
           shadow-xl
           rounded-t-md
           w-full
-          h-[12vw]
+          h-full
+
           
         "
           width={100}
