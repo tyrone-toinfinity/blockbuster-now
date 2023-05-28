@@ -1,6 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 import "../styles/globals.css";
 
 const metadata = {
@@ -41,6 +42,7 @@ export default function App({
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
+      <Analytics />
     </>
   );
 }
