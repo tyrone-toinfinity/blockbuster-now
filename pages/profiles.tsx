@@ -56,7 +56,7 @@ const UserCard: React.FC<UserCardProps> = ({ name }) => {
 
   return (
     <div className="group flex-row w-44 mx-auto">
-      <div className="w-44 h-44 p-1 flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-white overflow-hidden rounded-full ">
+      <div className="w-44 h-44 p-1 flex items-center justify-center border-2 border-transparent group-hover:cursor-pointer group-hover:border-yellow-300 overflow-hidden rounded-full ">
         <Image
           draggable={false}
           className="w-max h-max object-contain"
@@ -66,7 +66,7 @@ const UserCard: React.FC<UserCardProps> = ({ name }) => {
           height={250}
         />
       </div>
-      <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white ">
+      <div className="mt-4  text-yellow-500 text-2xl text-center group-hover:text-yellow-300  cursor-pointer">
         {name}
       </div>
     </div>
@@ -84,10 +84,10 @@ const App = () => {
   return (
     <div className="flex items-center h-full justify-center">
       <div className="flex flex-col">
-        <h1 className="text-3xl md:text-6xl text-white text-center">
-          Welcome back
+        <h1 className="text-3xl md:text-6xl text-yellow-500 text-center">
+          {`Who's Watching`}
         </h1>
-        <div className="flex items-center justify-center gap-8 mt-10">
+        <div className="flex items-center justify-center gap-8 mt-10 ">
           <div onClick={() => selectProfile()}>
             <UserCard name={currentUser?.name} />
           </div>
