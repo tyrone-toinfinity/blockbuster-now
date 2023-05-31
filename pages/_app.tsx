@@ -18,6 +18,7 @@ export default function App({
   return (
     <>
       <Head>
+        <html lang="en" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link

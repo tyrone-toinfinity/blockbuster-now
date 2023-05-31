@@ -119,7 +119,7 @@ const Auth = () => {
 
             <button
               onClick={variant === "login" ? login : register}
-              className="bg-yellow-600 py-4 text-white rounded-md  w-full mt-6 hover:bg-yellow-500 text-base"
+              className="bg-yellow-600 py-4 text-black rounded-md   w-full mt-6 hover:bg-yellow-500 text-base"
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
@@ -134,6 +134,7 @@ const Auth = () => {
               <button
                 onClick={() => signIn("github", { callbackUrl: "/profiles" })}
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+                aria-label="Sign in with GitHub"
               >
                 <FaGithub size={32} />
               </button>
