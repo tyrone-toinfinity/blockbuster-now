@@ -17,8 +17,8 @@ export default function App({
 }: AppProps) {
   return (
     <>
+      <html lang="en" />
       <Head>
-        <html lang="en" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <link
