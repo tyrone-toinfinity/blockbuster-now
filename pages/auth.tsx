@@ -108,6 +108,7 @@ const Auth = () => {
                 value={email}
                 onChange={(e: any) => setEmail(e.target.value)}
               />
+              <p className="text-white text-base">email: friend@gmail.com</p>
               <Input
                 type="password"
                 id="password"
@@ -115,6 +116,7 @@ const Auth = () => {
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
+              <p className="text-white text-base">password: 1</p>
             </div>
 
             <button
